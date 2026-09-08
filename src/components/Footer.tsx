@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScreenType } from '../types';
 import { BrandLogo } from './BrandLogo';
+import { useFoundationData } from '../context/FoundationDataContext';
 
 interface FooterProps {
   onNavigate: (screen: ScreenType) => void;
@@ -9,6 +10,11 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDonate }) => {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const { settings } = useFoundationData();
+
+  const officeAddress = settings?.officeAddress || '25 Ediba Rd, Calabar, Cross River State, Nigeria';
+  const contactEmail = settings?.contactEmail || 'admin@karlpeacelegacy.org';
+  const regNumber = settings?.registrationNumber || '9622998';
 
   return (
     <>
@@ -24,19 +30,30 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDonate }) => {
               <p className="text-sm text-[#4B485A] leading-relaxed max-w-lg">
                 Empowering young people in Nigeria through transformative education, mentorship, scholarships, and public health initiatives. Guided by a steadfast vision of opportunity, transparency, and grassroots excellence.
               </p>
-              <div className="pt-2 flex flex-col gap-1.5 text-sm text-[#4B485A]">
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[18px] text-[#D97706]">mail</span>
-                  <a
-                    href="mailto:contact@karlpeacelegacy.org"
-                    className="hover:text-[#1E1B4B] hover:underline"
-                  >
-                    contact@karlpeacelegacy.org
-                  </a>
+
+              {/* Legal Non-profit Status Badge */}
+              <div className="inline-flex items-center gap-2 py-1 px-2.5 rounded-lg bg-white border border-[#E8E4DA] text-xs text-[#1E1B4B] w-fit shadow-2xs">
+                <span className="material-symbols-outlined text-[15px] text-[#D97706]">verified</span>
+                <span>Registered Non-Profit Organization in Nigeria • Reg No: <strong>{regNumber}</strong></span>
+              </div>
+
+              <div className="pt-1 flex flex-col gap-2 text-sm text-[#4B485A]">
+                <div className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-[18px] text-[#D97706] shrink-0 mt-0.5">location_on</span>
+                  <span>Registered &amp; Physical Address: <strong>{officeAddress}</strong></span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[18px] text-[#D97706]">location_on</span>
-                  <span>Secretariat: Abuja & Lagos, Nigeria</span>
+                  <span className="material-symbols-outlined text-[18px] text-[#D97706] shrink-0">mail</span>
+                  <a
+                    href={`mailto:${contactEmail}`}
+                    className="hover:text-[#1E1B4B] hover:underline font-medium"
+                  >
+                    {contactEmail}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#6E6B7E]">
+                  <span className="material-symbols-outlined text-[16px] text-emerald-600 shrink-0">language</span>
+                  <span>Official Website: <strong>karlpeacelegacy.org</strong> (Primary Domain)</span>
                 </div>
               </div>
             </div>
@@ -152,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDonate }) => {
           {/* Bottom disclaimer & copyright */}
           <div className="pt-6 border-t border-[#E8E4DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[#6E6B7E]">
             <p>
-              Karl Peace Legacy Foundation operates <strong>karlpeacelegacy.org</strong>. Dedicated to transparency, institutional excellence, and youth empowerment across Nigeria.
+              <strong>karlpeacelegacy.org</strong> is the official website and primary domain of <strong>Karl Peace Legacy Foundation</strong>, a registered non-profit organization in Nigeria (Registration No. {regNumber}). Registered address: {officeAddress}.
             </p>
             <div className="flex items-center gap-3 shrink-0">
               <span>© {new Date().getFullYear()} Karl Peace Legacy Foundation. All rights reserved.</span>

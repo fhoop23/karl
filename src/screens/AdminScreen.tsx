@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../context/AuthContext';
 import { useFoundationData } from '../context/FoundationDataContext';
+import { ImageUploadField } from '../components/ImageUploadField';
 import {
   ProgramItem,
   NewsArticle,
@@ -88,6 +89,12 @@ export const AdminScreen: React.FC<AdminScreenProps> = ({ onNavigate }) => {
 
   // Settings form state
   const [settingsForm, setSettingsForm] = useState<SiteSettings>(settings);
+
+  useEffect(() => {
+    if (settings) {
+      setSettingsForm(settings);
+    }
+  }, [settings]);
 
   // Program edit modal state
   const [editingProgram, setEditingProgram] = useState<ProgramItem | null>(null);
@@ -705,11 +712,34 @@ export const AdminScreen: React.FC<AdminScreenProps> = ({ onNavigate }) => {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-[#1E1B4B]">Secretariat Location / Address</label>
+                  <label className="text-xs font-bold text-[#1E1B4B]">Registered &amp; Physical Address</label>
                   <input
                     type="text"
                     value={settingsForm.officeAddress}
-                    onChange={(e) => setSettingsForm({ ...settingsForm, officeAddress: e.target.value })}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, officeAddress: e.target.value, registeredAddress: e.target.value })}
+                    placeholder="25 Ediba Rd, Calabar, Cross River State, Nigeria"
+                    className="w-full h-11 px-4 rounded-xl border border-[#E8E4DA] text-sm focus:outline-none focus:border-[#D97706]"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-[#1E1B4B]">Non-Profit Registration Number (Nigeria)</label>
+                  <input
+                    type="text"
+                    value={settingsForm.registrationNumber || '9622998'}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, registrationNumber: e.target.value })}
+                    placeholder="9622998"
+                    className="w-full h-11 px-4 rounded-xl border border-[#E8E4DA] text-sm focus:outline-none focus:border-[#D97706]"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-xs font-bold text-[#1E1B4B]">Official Website &amp; Primary Domain</label>
+                  <input
+                    type="text"
+                    value={settingsForm.officialDomain || 'karlpeacelegacy.org'}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, officialDomain: e.target.value })}
+                    placeholder="karlpeacelegacy.org"
                     className="w-full h-11 px-4 rounded-xl border border-[#E8E4DA] text-sm focus:outline-none focus:border-[#D97706]"
                   />
                 </div>
@@ -1658,13 +1688,13 @@ export const AdminScreen: React.FC<AdminScreenProps> = ({ onNavigate }) => {
                   />
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label className="font-bold text-[#1E1B4B]">Image URL</label>
-                  <input
-                    type="text"
+                <div className="md:col-span-2">
+                  <ImageUploadField
+                    label="Program Cover Photograph"
+                    description="Upload an image from your computer or local storage to represent this program."
                     value={editingProgram.image}
-                    onChange={(e) => setEditingProgram({ ...editingProgram, image: e.target.value })}
-                    className="h-10 px-3 rounded-xl border border-[#E8E4DA] text-xs"
+                    onChange={(url) => setEditingProgram({ ...editingProgram, image: url })}
+                    required
                   />
                 </div>
               </div>
@@ -1949,29 +1979,15 @@ export const AdminScreen: React.FC<AdminScreenProps> = ({ onNavigate }) => {
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label className="font-bold text-[#1E1B4B]">Photo URL</label>
-                  <div className="flex gap-2 items-center">
-                    <input
-                      type="text"
-                      value={editingLeader.image}
-                      onChange={(e) => setEditingLeader({ ...editingLeader, image: e.target.value })}
-                      placeholder="https://..."
-                      className="flex-1 h-10 px-3 rounded-xl border border-[#E8E4DA] text-xs font-mono"
-                    />
-                    {editingLeader.image && (
-                      <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-[#F4F1EA] border border-[#E8E4DA] shrink-0 flex items-center justify-center" title="Photo Preview">
-                        <img
-                          src={editingLeader.image}
-                          alt=""
-                          className="w-full h-full object-contain"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                          }}
-                        />
-                      </div>
-                    )}
-                  </div>
+                <div className="md:col-span-2">
+                  <ImageUploadField
+                    label="Leader Portrait / Photograph"
+                    description="Select or drop a photo from your computer or local storage (displays normal and uncropped)."
+                    value={editingLeader.image}
+                    onChange={(url) => setEditingLeader({ ...editingLeader, image: url })}
+                    aspectHint="portrait"
+                    required
+                  />
                 </div>
               </div>
 
@@ -2079,15 +2095,13 @@ export const AdminScreen: React.FC<AdminScreenProps> = ({ onNavigate }) => {
                 />
               </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="font-bold text-[#1E1B4B]">Image Direct URL</label>
-                <input
-                  type="url"
-                  required
+              <div>
+                <ImageUploadField
+                  label="Gallery Photograph"
+                  description="Select a photograph from your local computer or storage to upload into the foundation's public gallery."
                   value={editingPhoto.image}
-                  onChange={(e) => setEditingPhoto({ ...editingPhoto, image: e.target.value })}
-                  className="h-10 px-3 rounded-xl border border-[#E8E4DA] text-xs"
-                  placeholder="https://..."
+                  onChange={(url) => setEditingPhoto({ ...editingPhoto, image: url })}
+                  required
                 />
               </div>
 

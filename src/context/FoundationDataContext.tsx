@@ -23,9 +23,12 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   heroTitle: 'Empowering Nigerian Youth Through Education, Health, and Mentorship',
   heroSubtitle: 'Honoring Dr. Karl E. Peace’s lifelong legacy in public health and biostatistics by providing tertiary scholarships, executive career guidance, and community health interventions across Nigeria.',
   heroBadge: 'Fostering Excellence • Expanding Horizons',
-  contactEmail: 'contact@karlpeacelegacy.org',
+  contactEmail: 'admin@karlpeacelegacy.org',
   contactPhone: '+234 800 000 0000',
-  officeAddress: 'Abuja & Lagos Secretariats, Federal Republic of Nigeria',
+  officeAddress: '25 Ediba Rd, Calabar, Cross River State, Nigeria',
+  registeredAddress: '25 Ediba Rd, Calabar, Cross River State, Nigeria',
+  registrationNumber: '9622998',
+  officialDomain: 'karlpeacelegacy.org',
   scholarshipAlertActive: true,
   scholarshipAlertTitle: '2025/2026 Tertiary Scholarship Framework',
   scholarshipAlertText: 'The official evaluation roadmap has been ratified by the board of trustees. Prospective Nigerian undergraduates may review verified eligibility requirements.',
@@ -33,7 +36,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   scholarshipAlertCycle: '2025/2026 Academic Session',
 };
 
-const LOCAL_STORAGE_DATA_KEY = 'karl_peace_foundation_data_v2';
+const LOCAL_STORAGE_DATA_KEY = 'karl_peace_foundation_data_v3';
 const LOCAL_STORAGE_API_KEY = 'karl_peace_php_api_url';
 
 interface FoundationDataContextType {
@@ -142,7 +145,18 @@ export const FoundationDataProvider: React.FC<{ children: React.ReactNode }> = (
         const cached = localStorage.getItem(LOCAL_STORAGE_DATA_KEY);
         if (cached) {
           const parsed = JSON.parse(cached);
-          if (parsed.settings) setSettings(parsed.settings);
+          if (parsed.settings) {
+            setSettings(prev => ({
+              ...DEFAULT_SITE_SETTINGS,
+              ...parsed.settings,
+              // Ensure official updated defaults if old placeholder was stored
+              contactEmail: (!parsed.settings.contactEmail || parsed.settings.contactEmail === 'contact@karlpeacelegacy.org') ? 'admin@karlpeacelegacy.org' : parsed.settings.contactEmail,
+              officeAddress: (!parsed.settings.officeAddress || parsed.settings.officeAddress.includes('Abuja & Lagos')) ? '25 Ediba Rd, Calabar, Cross River State, Nigeria' : parsed.settings.officeAddress,
+              registeredAddress: '25 Ediba Rd, Calabar, Cross River State, Nigeria',
+              registrationNumber: '9622998',
+              officialDomain: 'karlpeacelegacy.org'
+            }));
+          }
           if (Array.isArray(parsed.programs)) setPrograms(parsed.programs);
           if (Array.isArray(parsed.news)) setNews(parsed.news);
           if (Array.isArray(parsed.leaders)) setLeaders(parsed.leaders);

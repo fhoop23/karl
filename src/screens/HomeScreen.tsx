@@ -832,7 +832,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           >
             <a
               className="h-12 px-6 rounded-lg bg-[#D97706] hover:bg-[#F59E0B] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99]"
-              href="mailto:contact@karlpeacelegacy.org"
+              href="mailto:admin@karlpeacelegacy.org"
             >
               <span className="material-symbols-outlined text-[20px]">mail</span>
               <span>Contact Foundation Office</span>
@@ -849,7 +849,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 Official Foundation Channel
               </span>
               <span className="text-xs sm:text-sm text-white select-all font-mono font-medium">
-                contact@karlpeacelegacy.org
+                admin@karlpeacelegacy.org
               </span>
             </div>
           </motion.div>

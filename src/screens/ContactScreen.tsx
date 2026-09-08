@@ -52,57 +52,82 @@ export const ContactScreen: React.FC = () => {
         {/* Left Column: Office Contacts & Anti-Fraud Notice */}
         <div className="md:col-span-5 flex flex-col gap-6">
           <div className="p-6 sm:p-8 rounded-3xl liquid-glass-card border border-white/80 shadow-md flex flex-col gap-6">
-            <h3 className="font-serif text-xl font-bold text-[#1E1B4B]">
-              Administrative Secretariats
-            </h3>
+            <div className="flex flex-col gap-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#D97706]">Official Representation</span>
+              <h3 className="font-serif text-xl font-bold text-[#1E1B4B]">
+                Registered Headquarters &amp; Offices
+              </h3>
+              <p className="text-xs text-[#4B485A]">
+                Karl Peace Legacy Foundation is a registered non-profit organization in Nigeria (Reg No: <strong>{settings.registrationNumber || '9622998'}</strong>).
+              </p>
+            </div>
 
             <div className="flex flex-col gap-5">
-              <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-2xl liquid-glass-dark-btn text-white flex items-center justify-center shrink-0 shadow-xs">
-                  <span className="material-symbols-outlined text-[20px]">account_balance</span>
+              {/* Primary Registered & Physical Address */}
+              <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+                <div className="w-11 h-11 rounded-2xl bg-[#D97706] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <span className="material-symbols-outlined text-[20px]">apartment</span>
                 </div>
                 <div>
                   <span className="text-xs uppercase font-bold text-[#D97706] block">
-                    National Secretariat (Abuja)
+                    Registered &amp; Physical Address
                   </span>
-                  <span className="font-medium text-[#1E1B4B]">Federal Capital Territory, Nigeria</span>
+                  <span className="font-bold text-[#1E1B4B] block">{settings.officeAddress || '25 Ediba Rd, Calabar, Cross River State, Nigeria'}</span>
                   <p className="text-xs text-[#6E6B7E] mt-0.5 leading-relaxed">
-                    Governance, university partnerships, scholarship vetting, and fiduciary administration.
+                    Official registered non-profit secretariat under Nigerian law (Registration No. {settings.registrationNumber || '9622998'}).
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-2xl liquid-glass-amber-btn text-white flex items-center justify-center shrink-0 shadow-xs">
-                  <span className="material-symbols-outlined text-[20px]">hub</span>
-                </div>
-                <div>
-                  <span className="text-xs uppercase font-bold text-[#D97706] block">
-                    Lagos Outreach Desk
-                  </span>
-                  <span className="font-medium text-[#1E1B4B]">Lagos State, Nigeria</span>
-                  <p className="text-xs text-[#6E6B7E] mt-0.5 leading-relaxed">
-                    Mentorship pairing, youth summits, and public health community drives.
-                  </p>
-                </div>
-              </div>
-
+              {/* Administrative Email */}
               <div className="flex items-start gap-3.5">
                 <div className="w-11 h-11 rounded-2xl bg-teal-50 border border-teal-200 text-[#0D9488] flex items-center justify-center shrink-0 shadow-xs">
                   <span className="material-symbols-outlined text-[20px]">alternate_email</span>
                 </div>
                 <div>
                   <span className="text-xs uppercase font-bold text-[#0D9488] block">
-                    Direct Email Registry
+                    Official Administrative Email
                   </span>
                   <a
-                    href={`mailto:${settings.contactEmail || 'contact@karlpeacelegacy.org'}`}
-                    className="font-medium text-[#1E1B4B] hover:text-[#D97706] transition-colors"
+                    href={`mailto:${settings.contactEmail || 'admin@karlpeacelegacy.org'}`}
+                    className="font-bold text-[#1E1B4B] hover:text-[#D97706] transition-colors"
                   >
-                    {settings.contactEmail || 'contact@karlpeacelegacy.org'}
+                    {settings.contactEmail || 'admin@karlpeacelegacy.org'}
                   </a>
                   <p className="text-xs text-[#6E6B7E] mt-0.5">
-                    Average response time within 24–48 business hours.
+                    Official email for institutional correspondence, board inquiries, and student affairs.
+                  </p>
+                </div>
+              </div>
+
+              {/* Official Domain */}
+              <div className="flex items-start gap-3.5">
+                <div className="w-11 h-11 rounded-2xl bg-indigo-50 border border-indigo-200 text-[#1E1B4B] flex items-center justify-center shrink-0 shadow-xs">
+                  <span className="material-symbols-outlined text-[20px]">language</span>
+                </div>
+                <div>
+                  <span className="text-xs uppercase font-bold text-[#1E1B4B] block">
+                    Official Website &amp; Primary Domain
+                  </span>
+                  <span className="font-bold text-[#1E1B4B] block">karlpeacelegacy.org</span>
+                  <p className="text-xs text-[#6E6B7E] mt-0.5">
+                    Official digital home and authoritative web domain of Karl Peace Legacy Foundation.
+                  </p>
+                </div>
+              </div>
+
+              {/* Liaison Desks */}
+              <div className="flex items-start gap-3.5 pt-2 border-t border-black/5">
+                <div className="w-11 h-11 rounded-2xl liquid-glass-dark-btn text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <span className="material-symbols-outlined text-[20px]">hub</span>
+                </div>
+                <div>
+                  <span className="text-xs uppercase font-bold text-[#D97706] block">
+                    Outreach &amp; Liaison Desks
+                  </span>
+                  <span className="font-medium text-[#1E1B4B]">Abuja &amp; Lagos, Nigeria</span>
+                  <p className="text-xs text-[#6E6B7E] mt-0.5 leading-relaxed">
+                    Student mentorship pairing, scholarship verification, and health community drives.
                   </p>
                 </div>
               </div>
@@ -112,7 +137,7 @@ export const ContactScreen: React.FC = () => {
               <span className="material-symbols-outlined text-[#0D9488] text-[20px] shrink-0">
                 verified
               </span>
-              <span>All authentic communications originate strictly from @karlpeacelegacy.org. Never pay fees for applications.</span>
+              <span>All authentic communications originate strictly from @karlpeacelegacy.org. Never pay application fees.</span>
             </div>
           </div>
         </div>

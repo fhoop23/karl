@@ -16,6 +16,9 @@ export interface SiteSettings {
   contactEmail: string;
   contactPhone: string;
   officeAddress: string;
+  registeredAddress?: string;
+  registrationNumber?: string;
+  officialDomain?: string;
   scholarshipAlertActive: boolean;
   scholarshipAlertTitle: string;
   scholarshipAlertText: string;

@@ -243,6 +243,71 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenDona
         </div>
       </section>
 
+      {/* Legal & Institutional Identity Card */}
+      <section className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#D97706]/30 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+        <div className="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-[#D97706]/5 pointer-events-none blur-xl" />
+        
+        <div className="flex flex-col gap-3 max-w-2xl text-left">
+          <div className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-amber-50 text-[#D97706] text-xs font-bold w-fit border border-amber-200">
+            <span className="material-symbols-outlined text-[16px]">verified_user</span>
+            <span>Official Institutional Identity &amp; Registry Verification</span>
+          </div>
+
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1E1B4B]">
+            Karl Peace Legacy Foundation — Registered Non-Profit
+          </h3>
+
+          <p className="text-sm text-[#4B485A] leading-relaxed">
+            The <strong>Karl Peace Legacy Foundation</strong> is a legally recognized and registered non-profit organization in the Federal Republic of Nigeria under Registration Number <strong>9622998</strong>.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-[#1E1B4B]">
+            <div className="p-3 rounded-xl bg-[#F8F7F4] border border-[#E8E4DA] flex items-start gap-2.5">
+              <span className="material-symbols-outlined text-[18px] text-[#D97706] shrink-0 mt-0.5">apartment</span>
+              <div>
+                <span className="font-bold block text-[#1E1B4B]">Registered &amp; Physical Address</span>
+                <span className="text-[#4B485A]">25 Ediba Rd, Calabar, Cross River State, Nigeria</span>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-[#F8F7F4] border border-[#E8E4DA] flex items-start gap-2.5">
+              <span className="material-symbols-outlined text-[18px] text-[#D97706] shrink-0 mt-0.5">language</span>
+              <div>
+                <span className="font-bold block text-[#1E1B4B]">Official Website &amp; Primary Domain</span>
+                <span className="text-[#4B485A]">
+                  <strong>karlpeacelegacy.org</strong> is the official website and primary domain of Karl Peace Legacy Foundation.
+                </span>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-[#F8F7F4] border border-[#E8E4DA] flex items-start gap-2.5">
+              <span className="material-symbols-outlined text-[18px] text-[#D97706] shrink-0 mt-0.5">badge</span>
+              <div>
+                <span className="font-bold block text-[#1E1B4B]">Registration Number</span>
+                <span className="text-[#4B485A]">Non-Profit Reg No: <strong>9622998</strong> (Nigeria)</span>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-[#F8F7F4] border border-[#E8E4DA] flex items-start gap-2.5">
+              <span className="material-symbols-outlined text-[18px] text-[#D97706] shrink-0 mt-0.5">mail</span>
+              <div>
+                <span className="font-bold block text-[#1E1B4B]">Official Administrative Email</span>
+                <a href="mailto:admin@karlpeacelegacy.org" className="text-[#D97706] hover:underline font-semibold">
+                  admin@karlpeacelegacy.org
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="shrink-0 flex flex-col items-center justify-center p-5 rounded-2xl bg-[#1E1B4B] text-white text-center w-full md:w-56 shadow-md border border-[#1E1B4B]">
+          <span className="material-symbols-outlined text-[36px] text-[#F59E0B] mb-2">policy</span>
+          <span className="text-xs uppercase tracking-wider text-[#F59E0B] font-bold">Public Record</span>
+          <span className="font-serif text-lg font-bold text-white mt-1">Reg: 9622998</span>
+          <span className="text-[11px] text-white/70 mt-1">Non-Profit Organization • Nigeria</span>
+        </div>
+      </section>
+
       {/* Leadership & Founders Section */}
       <LeadershipSection
         title="Our Dedicated Leadership Team"
@@ -254,22 +319,22 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenDona
       <section className="p-8 sm:p-12 rounded-3xl liquid-glass-dark-btn text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
         <div className="flex flex-col gap-3 max-w-xl">
           <div className="inline-flex items-center gap-1.5 py-0.5 px-3 rounded-full bg-white/15 text-[#F59E0B] text-xs uppercase font-bold self-start backdrop-blur-xs">
-            National Footprint
+            National Footprint &amp; Head Office
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
-            Operational Presence: Abuja &amp; Lagos
+            Operational Presence &amp; Registered Secretariat
           </h2>
           <p className="text-sm text-[#F5F3ED]/85 leading-relaxed">
-            The Foundation coordinates its scholarship programs, mentor vetting, and university partnerships through its administrative secretariat in Abuja (FCT) alongside an outreach operations desk in Lagos State.
+            The Foundation maintains its registered corporate office at <strong>25 Ediba Rd, Calabar</strong>, and coordinates scholarship programs, mentor vetting, and university partnerships across Nigeria.
           </p>
           <div className="flex flex-wrap gap-4 pt-2 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[#F59E0B] text-[18px]">location_on</span>
-              <span>Abuja Secretariat (Policy &amp; Fiduciary Governance)</span>
+              <span className="material-symbols-outlined text-[#F59E0B] text-[18px]">home_pin</span>
+              <span>Registered Office: 25 Ediba Rd, Calabar</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[#F59E0B] text-[18px]">location_on</span>
-              <span>Lagos Operations Hub (Outreach &amp; Mentorship)</span>
+              <span>Federal Liaison Desks (Abuja &amp; Lagos)</span>
             </div>
           </div>
         </div>
