@@ -1,0 +1,228 @@
+import React, { useState } from 'react';
+import { ScreenType } from '../types';
+import { BrandLogo } from './BrandLogo';
+
+interface FooterProps {
+  onNavigate: (screen: ScreenType) => void;
+  onOpenDonate: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDonate }) => {
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+
+  return (
+    <>
+      <footer className="w-full bg-[#f5f3ef] border-t border-[#E8E4DA] pt-12 pb-24 lg:pb-12 px-4 sm:px-6 lg:px-8 mt-auto">
+        <div className="max-w-7xl mx-auto flex flex-col gap-8">
+          {/* Top section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Col 1: Brand & Mission */}
+            <div className="flex flex-col gap-3 lg:col-span-2">
+              <div className="flex items-center gap-2.5">
+                <BrandLogo size="md" />
+              </div>
+              <p className="text-sm text-[#4B485A] leading-relaxed max-w-lg">
+                Empowering young people in Nigeria through transformative education, mentorship, scholarships, and public health initiatives. Guided by a steadfast vision of opportunity, transparency, and grassroots excellence.
+              </p>
+              <div className="pt-2 flex flex-col gap-1.5 text-sm text-[#4B485A]">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[18px] text-[#D97706]">mail</span>
+                  <a
+                    href="mailto:contact@karlpeacelegacy.org"
+                    className="hover:text-[#1E1B4B] hover:underline"
+                  >
+                    contact@karlpeacelegacy.org
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[18px] text-[#D97706]">location_on</span>
+                  <span>Secretariat: Abuja & Lagos, Nigeria</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Col 2: Navigation Links */}
+            <div className="flex flex-col gap-3">
+              <h4 className="font-serif text-sm font-bold text-[#1E1B4B] uppercase tracking-wider">
+                Explore
+              </h4>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <button
+                  onClick={() => onNavigate('about-us')}
+                  className="text-left text-[#4B485A] hover:text-[#1E1B4B] py-1 transition-colors"
+                >
+                  About Us
+                </button>
+                <button
+                  onClick={() => onNavigate('our-programs')}
+                  className="text-left text-[#4B485A] hover:text-[#1E1B4B] py-1 transition-colors"
+                >
+                  Our Programs
+                </button>
+                <button
+                  onClick={() => onNavigate('scholarships')}
+                  className="text-left text-[#4B485A] hover:text-[#1E1B4B] py-1 transition-colors"
+                >
+                  Scholarships
+                </button>
+                <button
+                  onClick={() => onNavigate('impact-and-gallery')}
+                  className="text-left text-[#4B485A] hover:text-[#1E1B4B] py-1 transition-colors"
+                >
+                  Impact & Gallery
+                </button>
+                <button
+                  onClick={() => onNavigate('news-and-updates')}
+                  className="text-left text-[#4B485A] hover:text-[#1E1B4B] py-1 transition-colors"
+                >
+                  News & Updates
+                </button>
+                <button
+                  onClick={() => onNavigate('contact-us')}
+                  className="text-left text-[#4B485A] hover:text-[#1E1B4B] py-1 transition-colors"
+                >
+                  Contact Us
+                </button>
+                <button
+                  onClick={() => onNavigate('admin')}
+                  className="text-left text-[#D97706] hover:text-[#B45309] font-medium py-1 transition-colors flex items-center gap-1"
+                >
+                  <span className="material-symbols-outlined text-[15px]">admin_panel_settings</span>
+                  <span>Admin Portal</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Col 3: Get Involved & Social */}
+            <div className="flex flex-col gap-3">
+              <h4 className="font-serif text-sm font-bold text-[#1E1B4B] uppercase tracking-wider">
+                Get Involved
+              </h4>
+              <p className="text-xs text-[#6E6B7E]">
+                Support verified Nigerian scholars or volunteer your expertise as an executive mentor.
+              </p>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={onOpenDonate}
+                  className="h-10 px-4 rounded-lg bg-[#D97706] hover:bg-[#F59E0B] text-white text-xs font-bold transition-all shadow-xs text-center"
+                >
+                  Support Scholarship Fund
+                </button>
+                <button
+                  onClick={() => onNavigate('get-involved')}
+                  className="h-10 px-4 rounded-lg bg-[#1E1B4B] hover:bg-[#312E81] text-white text-xs font-bold transition-all text-center"
+                >
+                  Institutional Partnerships
+                </button>
+              </div>
+
+              {/* Social Channels */}
+              <div className="flex items-center gap-2 pt-2">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Community Share"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-white border border-[#E8E4DA] text-[#1E1B4B] hover:bg-[#efeeea] transition-colors"
+                >
+                  <span className="material-symbols-outlined text-[18px]">share</span>
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram Highlights"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-white border border-[#E8E4DA] text-[#1E1B4B] hover:bg-[#efeeea] transition-colors"
+                >
+                  <span className="material-symbols-outlined text-[18px]">photo_camera</span>
+                </a>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Official Communications"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-white border border-[#E8E4DA] text-[#1E1B4B] hover:bg-[#efeeea] transition-colors"
+                >
+                  <span className="material-symbols-outlined text-[18px]">alternate_email</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom disclaimer & copyright */}
+          <div className="pt-6 border-t border-[#E8E4DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[#6E6B7E]">
+            <p>
+              Karl Peace Legacy Foundation operates <strong>karlpeacelegacy.org</strong>. Dedicated to transparency, institutional excellence, and youth empowerment across Nigeria.
+            </p>
+            <div className="flex items-center gap-3 shrink-0">
+              <span>© {new Date().getFullYear()} Karl Peace Legacy Foundation. All rights reserved.</span>
+              <span>•</span>
+              <button
+                onClick={() => setShowPrivacyModal(true)}
+                className="underline hover:text-[#1E1B4B]"
+              >
+                Privacy Policy
+              </button>
+              <span>•</span>
+              <button
+                onClick={() => onNavigate('admin')}
+                className="hover:text-[#D97706] font-medium transition-colors flex items-center gap-1"
+              >
+                <span className="material-symbols-outlined text-[14px]">lock</span>
+                <span>Admin</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Privacy Policy Modal */}
+      {showPrivacyModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161338]/70 backdrop-blur-sm p-4">
+          <div className="w-full max-w-lg bg-white rounded-2xl p-6 shadow-2xl border border-[#E8E4DA] flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-[#E8E4DA] pb-3">
+              <h3 className="font-serif font-bold text-lg text-[#1E1B4B]">
+                Privacy & Data Protection Policy
+              </h3>
+              <button
+                onClick={() => setShowPrivacyModal(false)}
+                className="w-8 h-8 rounded-full bg-[#efeeea] hover:bg-[#eae8e4] flex items-center justify-center text-[#6E6B7E]"
+              >
+                <span className="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+
+            <div className="text-sm text-[#4B485A] space-y-3 leading-relaxed">
+              <p>
+                <strong>Karl Peace Legacy Foundation</strong> is committed to safeguarding the privacy and personal data of Nigerian scholarship applicants, student beneficiaries, mentors, donors, and site visitors in accordance with applicable Nigerian Data Protection Regulation (NDPR) standards.
+              </p>
+              <h4 className="font-bold text-[#1E1B4B]">1. Information We Collect</h4>
+              <p>
+                We collect information provided directly when students register for scholarship notifications or complete grant eligibility questionnaires (including student name, academic institution, matriculation details, email, and program of study).
+              </p>
+              <h4 className="font-bold text-[#1E1B4B]">2. Fiduciary Use of Data</h4>
+              <p>
+                Information submitted is used solely for scholarship vetting, academic verification with tertiary institutions, mentorship cohort pairings, and official foundation dispatches. We do not sell, rent, or lease personal records to third parties.
+              </p>
+              <h4 className="font-bold text-[#1E1B4B]">3. Verification Safeguards</h4>
+              <p>
+                All student verification is handled directly by the Foundation Secretariat via encrypted protocols and verified university registrars.
+              </p>
+              <h4 className="font-bold text-[#1E1B4B]">4. Contact</h4>
+              <p>
+                For data inquiries or corrections, contact our Data Protection Office at <strong>contact@karlpeacelegacy.org</strong>.
+              </p>
+            </div>
+
+            <button
+              onClick={() => setShowPrivacyModal(false)}
+              className="w-full h-10 rounded-lg bg-[#1E1B4B] text-white text-sm font-semibold hover:bg-[#312E81] transition-colors mt-2"
+            >
+              Close Policy
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
